@@ -2,17 +2,13 @@
 - name: deploy nginx
   hosts: all
   vars:
-          web_server: nginx
+          web_server: apache2
           web_server_pre: apache2
   tasks:
           - name: install {{ web_server }}
             package:
                     name: "{{ web_server }}"
                     state: latest
-          - name: stop apache2 
-            service:
-                    name: "{{ web_server_pre }}"
-                    state: stopped
           - name: start and enable {{ web_server }}
             service:
                     name: "{{ web_server }}"
